@@ -2,12 +2,18 @@ import React from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import Navigation from "./components/navigation";
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
   const [position, setPosition] = useState("left");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [btnTitle, setBtnTitle] = useState("Submit")
+
+  function handleMouseOver() {
+    setBtnTitle("Sike!")
+    setPosition(position === "left" ? "right" : "left")
+  }
 
   return (
     <div className="App">
@@ -43,12 +49,10 @@ function App() {
               className="form-btn mt-3"
               variant="primary"
               type="submit"
-              onMouseOver={() =>
-                setPosition(() => (position === "left" ? "right" : "left"))
-              }
+              onMouseOver={handleMouseOver}
               style={{ width: "15rem", float: `${position}` }}
             >
-              Submit
+              {btnTitle}
             </Button>
           ) : (
             <Container className="text-center">
